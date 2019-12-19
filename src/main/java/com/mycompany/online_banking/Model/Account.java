@@ -21,13 +21,14 @@ public class Account {
     //private List<Integer> transList = new ArrayList<Integer>();
     
     // create a list of transactions??
-    private List<Transaction> arrayList = Arrays.asList(transArray);
+    private List<Transaction> transList = Arrays.asList(transArray);
     
 
-    public Account(int sortCode, int balance, String accountNum) {
+    public Account(int sortCode, int balance, String accountNum,List<Transaction> transList) {
         this.sortCode = sortCode;
         this.balance = balance;
         this.accountNum = accountNum;
+        this.transList= transList;
     }
 
     public int getSortCode() {

@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Ryan
+ * @author The Red Setters
  */
 
 import java.util.List;
@@ -22,45 +22,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class User {
     
-    private long id;
     private String name;
-    private String hairColour;
-    private int age;
-    private CCard [] ccards;
+    private String address;
+    private String email;
+    private String password;
+    private Account [] accounts;
 
-    public String getHairColour() {
-        return hairColour;
-    }
-
-    public void setHairColour(String hairColour) {
-        this.hairColour = hairColour;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public User() {
-    }
-
-    public User(long id, String name, String hairColour, int age) {
-        this.id = id;
+    public User(String name, String address, String email, String password) {
         this.name = name;
-        this.hairColour = hairColour;
-        this.age = age;
-        this.ccards = new CCard[0];
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.accounts = new Account[0];
     }
 
     public String getName() {
@@ -71,15 +44,40 @@ public class User {
         this.name = name;
     }
 
-    public CCard[] getCcards() {
-        return ccards;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCcards(CCard[] ccards) {
-        this.ccards = ccards;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAccounts(Account[] accounts) {
+        this.accounts = accounts;
+    }
+
+    public Account[] getAccounts(String accountNum) {
+        return accounts;
+    }
+
+
     
-
 }
 
     
