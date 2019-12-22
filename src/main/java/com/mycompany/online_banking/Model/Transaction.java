@@ -13,19 +13,18 @@ public class Transaction {
     private String date;
     private String description;
     private double newBalance;
-    private double input;
+    private String debit_credit;
+    private int transID;
 
-    public Transaction(String date, String description, double newBalance) {
+    public Transaction(String date, String description, double newBalance, String debit_credit) {
         this.date = date;
         this.description = description;
         this.newBalance = newBalance;
+        this.debit_credit = debit_credit;
     }
     
     
-    public double updateBalance(double input, double balance){
-        
-        
-    }
+   
     
     
 }

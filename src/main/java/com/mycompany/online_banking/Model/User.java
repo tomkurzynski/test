@@ -5,7 +5,7 @@
  */
 package com.mycompany.online_banking.Model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+
 
 /**
  *
@@ -15,10 +15,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Enda
- */
+
+
 @XmlRootElement
 public class User {
     
@@ -27,12 +25,18 @@ public class User {
     private String email;
     private String password;
     private Account [] accounts;
+    private int userID;
 
-    public User(String name, String address, String email, String password) {
+    public User() {
+    }
+    
+    
+    public User(String name, String address, String email, String password, int userID) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.password = password;
+        this.userID = userID;
         this.accounts = new Account[0];
     }
 
@@ -74,6 +78,14 @@ public class User {
 
     public Account[] getAccounts(String accountNum) {
         return accounts;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
 

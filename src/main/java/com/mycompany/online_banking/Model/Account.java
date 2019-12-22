@@ -8,27 +8,41 @@ package com.mycompany.online_banking.Model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.mycompany.online_banking.Model.User;
 
 /**
  *
  * @author The Red Setters
  */
+
+import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlRootElement
 public class Account {
     private int sortCode;
     private int balance;
     private String accountNum;
-    private Transaction [] transArray;
+    private User user = new User();
+    
+    private String userName = user.getName();
+    //private Transaction [] transArray;
     //private List<Integer> transList = new ArrayList<Integer>();
     
     // create a list of transactions??
-    private List<Transaction> transList = Arrays.asList(transArray);
+    //private List<Transaction> transList = Arrays.asList(transArray);
     
+    public Account(){
+        
+    }
 
-    public Account(int sortCode, int balance, String accountNum,List<Transaction> transList) {
+    public Account(int sortCode, int balance, String accountNum) {
         this.sortCode = sortCode;
         this.balance = balance;
         this.accountNum = accountNum;
-        this.transList= transList;
+       
+        //this.transList= transList;
     }
 
     public int getSortCode() {
