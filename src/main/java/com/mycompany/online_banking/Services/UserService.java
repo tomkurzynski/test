@@ -5,6 +5,7 @@
  */
 package com.mycompany.online_banking.Services;
 
+import com.mycompany.online_banking.Database.Databse;
 import com.mycompany.online_banking.Model.User;
 import com.mycompany.online_banking.Model.Account;
 import com.mycompany.online_banking.Model.Transaction;
@@ -16,31 +17,28 @@ import java.util.List;
  * @author Ryan
  */
 public class UserService {
-    //create a list of users & a list of accounts
-    public static List<User> userList = new ArrayList<>();
-    public static List<Account> accountList = AccountServices.getAccountList();
     
-    
-    public List<User> createAllUsers() {
-        //initialise users
-        User user1 = new User("John", "Dublin", "john@gmail.com","password",1);
-        User user2 = new User("Mark", "Dublin", "mark@gmail.com","password",2);
-        //initialise accounts
-       //Account account1 = new Account(123,5000,"A123");
-       //Account account2 = new Account(321,1000,"B123");
+     Databse userDB = new Databse();
+   
        
-        //Account [] accountUser1 = {account1, account2};
-        //user1.setAccounts(accountUser1);
-        userList.add(user1);
-        userList.add(user2);
-        //accountList.add(account1);
-       // accountList.add(account2);
-        
-        return userList;
-       
-        
-       
+     public User getUserById(int userId) {
+        return userDB.getUserById(userId);
     }
+    
+    public User createUser(User u){
+        return userDB.createUser(u);
+    }
+        
+       
+        
+       
+    
+    
+    /*
+    Customer cus1 = new Customer(1, "Enda","en@gmail.com","321654",ac1);
+        customerDB.add(cus1);
+        accountDB = ac1;
+    */
     /*
    //return all users
     public List<Account> getUserAccounts(String accountNum) {

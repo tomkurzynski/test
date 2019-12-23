@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 
+
 @XmlRootElement
 public class User {
     
@@ -24,20 +25,20 @@ public class User {
     private String address;
     private String email;
     private String password;
-    private Account [] accounts;
+    private List<Account> accounts;
     private int userID;
 
     public User() {
     }
     
     
-    public User(String name, String address, String email, String password, int userID) {
+    public User(String name, String address, String email, String password,int userID, List<Account> accounts) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.password = password;
         this.userID = userID;
-        this.accounts = new Account[0];
+        this.accounts = accounts;
     }
 
     public String getName() {
@@ -72,13 +73,15 @@ public class User {
         this.password = password;
     }
 
-    public void setAccounts(Account[] accounts) {
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 
-    public Account[] getAccounts(String accountNum) {
-        return accounts;
-    }
+    
 
     public int getUserID() {
         return userID;

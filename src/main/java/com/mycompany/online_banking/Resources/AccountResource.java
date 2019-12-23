@@ -28,13 +28,14 @@ public class AccountResource {
        
     AccountServices accountServices = new AccountServices();
     
-    
+    /*
     @GET
     @Path("/createAccount")
     @Produces(MediaType.APPLICATION_XML)
     public List<Account> createAccount() {
         return accountServices.createAccount();
     }
+    */
     
 }
 /*

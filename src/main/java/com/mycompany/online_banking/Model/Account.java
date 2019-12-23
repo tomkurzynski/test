@@ -24,26 +24,20 @@ public class Account {
     private int sortCode;
     private int balance;
     private String accountNum;
-    private User user = new User();
-    
-    private String userName = user.getName();
-    //private Transaction [] transArray;
-    //private List<Integer> transList = new ArrayList<Integer>();
-    
-    // create a list of transactions??
-    //private List<Transaction> transList = Arrays.asList(transArray);
+    private List<Transaction> transactions;
     
     public Account(){
         
     }
 
-    public Account(int sortCode, int balance, String accountNum) {
+    public Account(int sortCode, int balance, String accountNum, List<Transaction> transactions) {
         this.sortCode = sortCode;
         this.balance = balance;
-        this.accountNum = accountNum;
-       
-        //this.transList= transList;
+        this.accountNum =  accountNum;
+        this.transactions = transactions;
+        
     }
+    
 
     public int getSortCode() {
         return sortCode;
@@ -59,6 +53,14 @@ public class Account {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     public String getAccountNum() {
