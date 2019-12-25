@@ -5,74 +5,61 @@
  */
 package com.mycompany.online_banking.Services;
 import com.mycompany.online_banking.Model.User;
+import com.mycompany.online_banking.Database.Databse;
 import com.mycompany.online_banking.Model.Transaction;
 import com.mycompany.online_banking.Model.Account;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
  * @author Ryan
+ * 
+
  */
 public class AccountServices {
-    
-    private List<Account> account = new ArrayList<>();
-    public static List<Account> userOneAccount = new ArrayList<>();
-    public static List<Account> userTwoAccount = new ArrayList<>();
-    private List<Transaction> trans1 = new ArrayList<>();
-    private List<Transaction> trans2 = new ArrayList<>();
-    
-    
-    /*
-    public double getBalance(int accountNum){
+    Databse db = new Databse();       
+    private List<Account> accountList = Databse.getAccountList();
+    private List<User> userList = Databse.getUserList();
+    Random rand = new Random();
+  
+    // create a new account for a particular user add new accountID & accountNum 
+    public Account createAccount(Account account, int userId){
+     int size = accountList.size()+1;
+     //set the new account ID number to be the length of the arraylist
+     account.setAccountID(size);
+     
+     // Obtain a number between to be used as new account number
+     int n = rand.nextInt(1000000);
+     // Check if randomly generated number already exists as an account numnber
+     // If it does exist create another random number until unique number created
+     if(account.getAccountNum() == n){
+         n = rand.nextInt(1000000);
+     }else{
+     // set unique random number as account number
+     account.setAccountNum(n);
+     }
+     //add new account to the database accountList
+       
+     // add the account to the database userList. 
+     accountList.add(account); 
+     //userList.get(userId-1).getAccounts().add(account);
+     return accountList.get(size);
+   }
+    // get the balance of a particular user account    
+    public double getBalance(int accountID){ 
+       // get current balance     
+        return accountList.get(accountID-1).getBalance(); 
         
-        
-        return Account.getBalance();
     }
-    */
-    
-
-
-    public List<Account> getAccount() {
-        return account;
+    // get a list of all of the account information for a particular user
+    public List<Account> getAccounts(int userId){        
+        return userList.get(userId-1).getAccounts();        
     }
-
-    public void setAccount(List<Account> account) {
-        this.account = account;
-    }
-
-    public static List<Account> getUserOneAccount() {
-        return userOneAccount;
-    }
-
-    public static void setUserOneAccount(List<Account> userOneAccount) {
-        AccountServices.userOneAccount = userOneAccount;
-    }
-
-    public static List<Account> getUserTwoAccount() {
-        return userTwoAccount;
-    }
-
-    public static void setUserTwoAccount(List<Account> userTwoAccount) {
-        AccountServices.userTwoAccount = userTwoAccount;
-    }
-
-    public List<Transaction> getTrans1() {
-        return trans1;
-    }
-
-    public void setTrans1(List<Transaction> trans1) {
-        this.trans1 = trans1;
-    }
-
-    public List<Transaction> getTrans2() {
-        return trans2;
-    }
-
-    public void setTrans2(List<Transaction> trans2) {
-        this.trans2 = trans2;
+   
     }
     
 
 
-}
+

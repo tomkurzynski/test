@@ -47,15 +47,17 @@ public class UserResource {
         return userService.getUserById(userId);
     }
     
-       // curl -v -X POST http://localhost:49000/api/users/fetch/1
+       // curl -v -X POST http://localhost:49000/api/users/createUser
     /*
     @POST
-    @Path("/createCustomer")
+    @Path("/createUser")
+    @Produces(MediaType.APPLICATION_XML)
     public User createUser(User u){
         System.out.println("Creating new User...");
         return userService.createUser(u);
     }
     */
+    
    
 
     

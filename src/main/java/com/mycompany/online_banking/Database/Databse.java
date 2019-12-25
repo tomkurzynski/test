@@ -24,6 +24,7 @@ public class Databse {
     private static List<User> userList = new ArrayList<>();
     private static List<Account> accountList = new ArrayList<>();
     private static List<Transaction> transList = new ArrayList<>();
+    private static Account account = new Account();
     private static boolean db = true; 
 
     
@@ -47,15 +48,20 @@ public class Databse {
         //store user 2's accounts
         List<Account> userTwoAccount = new ArrayList<>();
 
-        //initialise accounts ofr user 1 and 2
-       Account userOneAccount1 = new Account(123,5000,"A123", trans1);
-       Account userOneaccount2 = new Account(321,1000,"B123",trans2);
-       Account userTwoAccount1 = new Account(456,5000,"A456", trans1);
+        //initialise accounts for user 1 and 2
+        //accountID is used to track location of users account in the arraylist1
+       Account userOneAccount1 = new Account(1,123,5000,000123, trans1);  
+       Account userTwoAccount1 = new Account(2,456,5000,001024, trans1);
+       Account userOneaccount2 = new Account(3,321,1000,000124,trans2);
        
        // add initialised accounts to user account arraylist
+       
        userOneAccount.add(userOneAccount1);
        userOneAccount.add(userOneaccount2);
        userTwoAccount.add(userTwoAccount1); 
+       
+               
+    
        
        //add to general overall account db
        accountList.add(userOneAccount1);
@@ -94,17 +100,7 @@ public class Databse {
         return transList;
     }
 
-    
-    public User getUserById(int userId) {
-        return userList.get(userId-1);
-
-    }
-    
-    public User createUser(User u){
-        u.setUserID(userList.size()+1);
-        userList.add(u);
-        return u;
-    }
+  
 
     
 
