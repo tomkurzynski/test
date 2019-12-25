@@ -12,6 +12,7 @@ package com.mycompany.online_banking.Model;
  * @author The Red Setters
  */
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,6 +41,16 @@ public class User {
         this.userID = userID;
         this.accounts = accounts;
     }
+    
+    //constructor for new users
+    public User(String name, String address, String email, String password) {
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.accounts = new ArrayList<>();
+    }
+    
 
     public String getName() {
         return name;
