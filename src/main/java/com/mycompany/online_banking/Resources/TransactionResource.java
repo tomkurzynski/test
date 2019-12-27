@@ -5,7 +5,6 @@
  */
 package com.mycompany.online_banking.Resources;
 
-import com.google.gson.Gson;
 import com.mycompany.online_banking.Database.Databse;
 import com.mycompany.online_banking.Model.Account;
 import com.mycompany.online_banking.Model.Transaction;
@@ -31,45 +30,54 @@ public class TransactionResource {
     TransactionService tService = new TransactionService(); 
     private List<Account> accountList = new Databse().getAccountList();
     
-    //curl -v -X POST http://localhost:49000/api/2/lodgement/100
-//    @POST
-//    @Path("/{accId}/lodge/{amount}")
-//    @Produces(MediaType.APPLICATION_XML)  
-//    public Response lodgeMoney(@PathParam("accId") int id, @PathParam("amount") double amount){
-//        Gson gson = new Gson();
-//        tService.lodgeMoney(id, amount);
-//        String message = "Lodgement successful";
-//        return Response.status(Response.Status.CREATED).entity(message).build(); 
-//        
-//    }
-    
+    //curl -v -X POST http://localhost:49000/api/transactions/2/lodge
+    /* In Postman...Body -> raw
+     *   {
+     *   "newBalance":4000.0
+     *   "description":"monthly salary"
+     *   }
+     */
     @POST
-    @Path("/{accId}/lodge")
+    @Path("/{accId}/lodge/")
     @Produces(MediaType.APPLICATION_XML)  
     public Response lodgeMoney(@PathParam("accId") int id, Transaction transaction){
         double amount = transaction.getNewBalance();
-        tService.lodgeMoney(id, amount);
-        String message = "Lodgement successful";
+        String description = transaction.getDescription();
+        String message = tService.lodgeMoney(id, amount, description);
         return Response.status(Response.Status.CREATED).entity(message).build(); 
     }
     
+    //curl -v -X POST http://localhost:49000/api/transactions/2/withdraw
+    /* In Postman...Body -> raw
+     *   {
+     *   "newBalance":100.0
+     *   "description":"ATM"
+     *   }
+     */
     @POST
     @Path("/{accId}/withdraw")
     @Produces(MediaType.APPLICATION_XML)  
     public Response withdrawMoney(@PathParam("accId") int id, Transaction transaction){
         double amount =transaction.getNewBalance();
-        tService.withdrawMoney(id, amount);
-        String message = "test";
-            return Response.status(Response.Status.CREATED).entity(message).build();   
+        String description = transaction.getDescription();
+        String message = tService.withdrawMoney(id, amount, description);
+        return Response.status(Response.Status.CREATED).entity(message).build();   
     }
     
+    //curl -v -X POST http://localhost:49000/api/transactions/2/3/transfer
+    /* In Postman...Body -> raw
+     *   {
+     *   "newBalance":4000.0
+     *   "description":"debt payment"
+     *   }
+     */
     @POST
     @Path("/{transferFrom}/{transferTo}/transfer")
     @Produces(MediaType.APPLICATION_XML)  
     public Response withdrawMoney(@PathParam("transferFrom") int id1, @PathParam("transferTo") int id2, Transaction transaction){
         double amount =transaction.getNewBalance();
-        tService.transferMoney(id1, id2, amount);
-        String message = "test";
-            return Response.status(Response.Status.CREATED).entity(message).build();   
+        String description = transaction.getDescription();
+        String message = tService.transferMoney(id1, id2, amount, description);
+        return Response.status(Response.Status.CREATED).entity(message).build();   
     }
 }

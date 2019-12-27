@@ -7,6 +7,11 @@ package com.mycompany.online_banking.Services;
 
 import com.mycompany.online_banking.Database.Databse;
 import com.mycompany.online_banking.Model.Account;
+import com.mycompany.online_banking.Model.Transaction;
+import com.mycompany.online_banking.Model.User;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,34 +19,62 @@ import java.util.List;
  * @author Ryan
  */
 public class TransactionService {
-    
+	
+	private Account getAccountById(int id) {
+		for(Account account : accountList) {
+	        if(account.getAccountID() == id) {
+	            return account;
+	        }
+	    }
+	    return null;
+	}
+	
     private List<Account> accountList = Databse.getAccountList();
-    //lodge (accID,amount)
-    public void lodgeMoney(int accId, double amount) {
-        double newBalance = accountList.get(accId-1).getBalance() + amount;
-        accountList.get(accId-1).setBalance(newBalance);
+    private String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+    
+    //lodge 
+    public String lodgeMoney(int accId, double amount, String description) {
+    	Account account = this.getAccountById(accId);
+        double newBalance = account.getBalance() + amount;
+        account.setBalance(newBalance);
+        account.addNewTransaction(new Transaction(date, description, newBalance, 1, accId, 0, "LODGE"));
+        String message = "Lodgement successful";
+        return message;
     }
     
-    //withdraw (amount)
-     public void withdrawMoney(int accId, double amount) {    	
-        double newBalance = accountList.get(accId-1).getBalance() - amount;
+    //withdraw 
+     public String withdrawMoney(int accId, double amount, String description) {    	
+    	Account account = this.getAccountById(accId);
+        double newBalance = account.getBalance() - amount;
+        String message = "";
         if(newBalance < 0) {
-        	System.out.println("You have insufficient funds to complete transaction");
+        	message = "You have insufficient funds to complete transaction";
         } else {
-        	accountList.get(accId-1).setBalance(newBalance);
-        	System.out.println("Withdrawal successful");
+        	account.setBalance(newBalance);
+        	account.addNewTransaction(new Transaction(date, description, newBalance, 1, accId, 0, "WITHDRAW"));
+        	message = "Withdrawal successful";
         }
+        return message;
     }
     
-    //transfer (accId1, accId2, amount) Patf /accFrom/accTo
-     public void transferMoney(int accId1, int accId2, double amount) {
-    	 double newBalance1 = accountList.get(accId1-1).getBalance() - amount;
+    //transfer 
+     public String transferMoney(int accId1, int accId2, double amount, String description) {
+    	 Account account1 = this.getAccountById(accId1);
+    	 Account account2 = this.getAccountById(accId2);
+    	 double newBalance1 = account1.getBalance() - amount;
+    	 String message = "";
     	 if(newBalance1 < 0) {
-    		 System.out.println("You have insufficient funds to complete transaction");
+    		 message = "You have insufficient funds to complete transaction";
     	 } else {
-    		 accountList.get(accId1-1).setBalance(newBalance1);
-    		 double newBalance2 = accountList.get(accId2-1).getBalance() + amount;
-    		 accountList.get(accId2-1).setBalance(newBalance2);
+    		 account1.setBalance(newBalance1);
+    		 double newBalance2 = account2.getBalance() + amount;
+    		 account2.setBalance(newBalance2);
+    		 account1.addNewTransaction(new Transaction(date, description, newBalance1, 1, accId1, accId2, "TRANSFER OUT"));
+    		 account2.addNewTransaction(new Transaction(date, description, newBalance2, 1, accId1, accId2, "TRANSFER IN"));
+    		 message = "Money transferred successfully";
     	 }
+    	 return message;
      }
+     
+
 }

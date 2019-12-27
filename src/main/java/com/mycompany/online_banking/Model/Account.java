@@ -64,6 +64,10 @@ public class Account {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
+    
+    public void addNewTransaction(Transaction transaction) {
+        this.transactions.add(transaction);
+    }
 
     public int getAccountNum() {
         return accountNum;
