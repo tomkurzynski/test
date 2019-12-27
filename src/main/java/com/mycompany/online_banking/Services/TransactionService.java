@@ -23,10 +23,25 @@ public class TransactionService {
     }
     
     //withdraw (amount)
-     public void withdrawMoney(int accId, double amount) {
-        double newBalance = accountList.get(accId-1).getBalance()- amount;
-        accountList.get(accId-1).setBalance(newBalance);
+     public void withdrawMoney(int accId, double amount) {    	
+        double newBalance = accountList.get(accId-1).getBalance() - amount;
+        if(newBalance < 0) {
+        	System.out.println("You have insufficient funds to complete transaction");
+        } else {
+        	accountList.get(accId-1).setBalance(newBalance);
+        	System.out.println("Withdrawal successful");
+        }
     }
     
     //transfer (accId1, accId2, amount) Patf /accFrom/accTo
+     public void transferMoney(int accId1, int accId2, double amount) {
+    	 double newBalance1 = accountList.get(accId1-1).getBalance() - amount;
+    	 if(newBalance1 < 0) {
+    		 System.out.println("You have insufficient funds to complete transaction");
+    	 } else {
+    		 accountList.get(accId1-1).setBalance(newBalance1);
+    		 double newBalance2 = accountList.get(accId2-1).getBalance() + amount;
+    		 accountList.get(accId2-1).setBalance(newBalance2);
+    	 }
+     }
 }

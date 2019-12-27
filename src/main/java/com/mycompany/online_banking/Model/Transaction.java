@@ -20,6 +20,9 @@ public class Transaction {
     private int accId2;
     private String transactionType;
     
+    public Transaction() {
+    	
+    }
 
     public Transaction(String date, String description, double newBalance, String debit_credit) {
         this.date = date;

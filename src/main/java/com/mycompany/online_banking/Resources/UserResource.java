@@ -63,25 +63,6 @@ public class UserResource {
     *   "email": "email@email.com",
     *   "password": "pass123"
     *   }
-    OR
-        {
-            "name": "Bob",
-            "address": "123 Dawson St, Dublin 2",
-            "email": "email@email.com",
-            "password": "pass123",
-            "accounts": [
-                {
-                    "number": 123456,
-                    "iban": "XDUB1",
-                    "balance": 100
-                },
-                {
-                    "number": 120055,
-                    "iban": "XDUB2",
-                    "balance": 2000
-                }
-            ]
-        }
     */
     @POST
     public Response addUser(String body) {
