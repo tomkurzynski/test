@@ -72,6 +72,16 @@ public class TransactionResource {
         return Response.status(Response.Status.CREATED).entity(message).build();   
     }
     
+    @POST
+    @Path("//{sortCode}/{accountNum}/withdraw")
+    @Produces(MediaType.APPLICATION_XML)  
+    public Response withdrawMoney2(@PathParam("sortCode") int sortCode, @PathParam("accountNum") int accountNum, Transaction transaction){
+        double amount =transaction.getNewBalance();
+        String description = transaction.getDescription();
+        String message = tService.withdrawMoney2(sortCode, accountNum, amount, description);
+        return Response.status(Response.Status.CREATED).entity(message).build();   
+    }
+    
     //curl -v -X POST http://localhost:49000/api/transactions/2/3/transfer
     /* In Postman...Body -> raw
      *   {
@@ -82,10 +92,20 @@ public class TransactionResource {
     @POST
     @Path("/{transferFrom}/{transferTo}/transfer")
     @Produces(MediaType.APPLICATION_XML)  
-    public Response withdrawMoney(@PathParam("transferFrom") int id1, @PathParam("transferTo") int id2, Transaction transaction){
+    public Response transfer(@PathParam("transferFrom") int id1, @PathParam("transferTo") int id2, Transaction transaction){
         double amount =transaction.getNewBalance();
         String description = transaction.getDescription();
         String message = tService.transferMoney(id1, id2, amount, description);
+        return Response.status(Response.Status.CREATED).entity(message).build();   
+    }
+    
+    @POST
+    @Path("/{FromSortCode}/{FromAccNum}/{ToSortCode}/{ToAccNum}/transfer")
+    @Produces(MediaType.APPLICATION_XML)  
+    public Response transfer2(@PathParam("FromSortCode") int sortCode1, @PathParam("FromAccNum") int accountNum1, @PathParam("ToSortCode") int sortCode2, @PathParam("ToAccNum") int accountNum2, Transaction transaction){
+        double amount =transaction.getNewBalance();
+        String description = transaction.getDescription();
+        String message = tService.transferMoney2(sortCode1, accountNum1, sortCode2, accountNum2, amount, description);
         return Response.status(Response.Status.CREATED).entity(message).build();   
     }
 }

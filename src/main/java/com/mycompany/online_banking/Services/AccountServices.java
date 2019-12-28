@@ -71,5 +71,7 @@ public class AccountServices {
 	public List<Account> getAccounts(int userId) {
 		return userList.get(userId - 1).getAccounts();
 	}
+	
+	
 
 }

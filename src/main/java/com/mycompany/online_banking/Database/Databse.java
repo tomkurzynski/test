@@ -74,9 +74,9 @@ public class Databse {
         User user2 = new User("Mark", "Dublin", "mark@gmail.com","password",2,userTwoAccount);
 
         userList.add(user1);
-        accountList = userOneAccount;
+//        accountList = userOneAccount;
         userList.add(user2);
-        accountList = userTwoAccount;
+//        accountList = userTwoAccount;
  
         
          db = false;
