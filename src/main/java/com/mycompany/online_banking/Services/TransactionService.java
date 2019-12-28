@@ -5,6 +5,7 @@
  */
 package com.mycompany.online_banking.Services;
 
+import com.fasterxml.uuid.Generators;
 import com.mycompany.online_banking.Database.Databse;
 import com.mycompany.online_banking.Model.Account;
 import com.mycompany.online_banking.Model.Transaction;
@@ -13,6 +14,7 @@ import com.mycompany.online_banking.Model.User;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -27,6 +29,15 @@ public class TransactionService {
 	    }
 	    return null;
 	}
+    
+private Account getAccountBySortCodeAndAccNum(int sortCode, int accountNum) {
+	for(Account account : accountList) {
+		if((account.getSortCode() == sortCode) && (account.getAccountNum() == accountNum)) {
+			return account;
+		}
+	}
+	return null;
+}
 	
     private List<Account> accountList = Databse.getAccountList();
 //    private String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
@@ -37,7 +48,20 @@ public class TransactionService {
         double newBalance = account.getBalance() + amount;
         account.setBalance(newBalance);
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        account.addNewTransaction(new Transaction(date, description, newBalance, 1, accId, 0, "LODGE"));
+        UUID uuid = Generators.randomBasedGenerator().generate();
+        account.addNewTransaction(new Transaction(date, description, newBalance, uuid.toString(), accId, 0, "LODGE"));
+        String message = "Lodgement successful";
+        return message;
+    }
+    
+    public String lodgeMoney2(int sortCode, int accountNum, double amount, String description) {
+    	Account account = this.getAccountBySortCodeAndAccNum(sortCode, accountNum);
+    	double newBalance = account.getBalance() + amount;
+    	int accId = account.getAccountID();
+        account.setBalance(newBalance);
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        UUID uuid = Generators.randomBasedGenerator().generate();
+        account.addNewTransaction(new Transaction(date, description, newBalance, uuid.toString(), accId, 0, "LODGE"));
         String message = "Lodgement successful";
         return message;
     }
@@ -52,7 +76,8 @@ public class TransactionService {
         } else {
         	account.setBalance(newBalance);
         	String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        	account.addNewTransaction(new Transaction(date, description, newBalance, 1, accId, 0, "WITHDRAW"));
+        	UUID uuid = Generators.randomBasedGenerator().generate();
+        	account.addNewTransaction(new Transaction(date, description, newBalance, uuid.toString(), accId, 0, "WITHDRAW"));
         	message = "Withdrawal successful";
         }
         return message;
@@ -71,8 +96,10 @@ public class TransactionService {
     		 double newBalance2 = account2.getBalance() + amount;
     		 account2.setBalance(newBalance2);
     		 String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-    		 account1.addNewTransaction(new Transaction(date, description, newBalance1, 1, accId1, accId2, "TRANSFER OUT"));
-    		 account2.addNewTransaction(new Transaction(date, description, newBalance2, 1, accId1, accId2, "TRANSFER IN"));
+    		 UUID uuid = Generators.randomBasedGenerator().generate();
+    		 account1.addNewTransaction(new Transaction(date, description, newBalance1, uuid.toString(), accId1, accId2, "TRANSFER OUT"));
+//    		 uuid = Generators.randomBasedGenerator().generate();
+    		 account2.addNewTransaction(new Transaction(date, description, newBalance2, uuid.toString(), accId1, accId2, "TRANSFER IN"));
     		 message = "Money transferred successfully";
     	 }
     	 return message;

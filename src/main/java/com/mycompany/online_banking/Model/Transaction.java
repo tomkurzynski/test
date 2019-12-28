@@ -14,7 +14,7 @@ public class Transaction {
     private String description;
     private double newBalance;
     private String debit_credit;
-    private int transID;
+    private String transID;
     private int accId1;
     private int accId2;
     private String transactionType;
@@ -34,7 +34,7 @@ public class Transaction {
     }
     
     
-    public Transaction(String date, String description, double newBalance, int transID, int accId1, int accId2, String transactionType) {
+    public Transaction(String date, String description, double newBalance, String transID, int accId1, int accId2, String transactionType) {
         this.date = date;
         this.description = description;
         this.newBalance = newBalance;
@@ -52,15 +52,22 @@ public class Transaction {
         return newBalance;
     }
 
-    public int getTransID() {
+    public String getTransID() {
         return transID;
     }
 
     public int getAccId1() {
         return accId1;
     }
+    
+    
 
-    public int getAccId2() {
+    public String getDate() {
+		return date;
+	}
+
+
+	public int getAccId2() {
         return accId2;
     }
 
@@ -80,7 +87,7 @@ public class Transaction {
         this.newBalance = newBalance;
     }
 
-    public void setTransID(int transID) {
+    public void setTransID(String transID) {
         this.transID = transID;
     }
 

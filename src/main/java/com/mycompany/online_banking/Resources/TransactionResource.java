@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class TransactionResource {
     TransactionService tService = new TransactionService(); 
-    private List<Account> accountList = new Databse().getAccountList();
+   // private List<Account> accountList = new Databse().getAccountList();
     
     //curl -v -X POST http://localhost:49000/api/transactions/2/lodge
     /* In Postman...Body -> raw
@@ -44,6 +44,16 @@ public class TransactionResource {
         String message = tService.lodgeMoney(id, amount, description);
         return Response.status(Response.Status.CREATED).entity(message).build(); 
     }
+    
+  @POST
+  @Path("/{sortCode}/{accountNum}/lodge/")
+  @Produces(MediaType.APPLICATION_XML)  
+  public Response lodgeMoney2(@PathParam("sortCode") int sortCode, @PathParam("accountNum") int accountNum, Transaction transaction){
+      double amount = transaction.getNewBalance();
+      String description = transaction.getDescription();
+      String message = tService.lodgeMoney2(sortCode, accountNum, amount, description);
+      return Response.status(Response.Status.CREATED).entity(message).build(); 
+  }
     
     //curl -v -X POST http://localhost:49000/api/transactions/2/withdraw
     /* In Postman...Body -> raw
