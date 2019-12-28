@@ -44,6 +44,7 @@ public class AccountServices {
 
 		// Obtain a number between to be used as new account number
 		int n = rand.nextInt(1000000);
+		int sortCode = rand.nextInt(999999);
 		// Check if randomly generated number already exists as an account numnber
 		// If it does exist create another random number until unique number created
 		if (account.getAccountNum() == n) {
@@ -51,6 +52,7 @@ public class AccountServices {
 		} else {
 			// set unique random number as account number
 			account.setAccountNum(n);
+			account.setSortCode(sortCode);
 		}
 		// add new account to the database accountList
 
