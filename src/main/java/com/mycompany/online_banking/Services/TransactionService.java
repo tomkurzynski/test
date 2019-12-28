@@ -19,8 +19,7 @@ import java.util.List;
  * @author Ryan
  */
 public class TransactionService {
-	
-	private Account getAccountById(int id) {
+    private Account getAccountById(int id) {
 		for(Account account : accountList) {
 	        if(account.getAccountID() == id) {
 	            return account;
@@ -30,13 +29,14 @@ public class TransactionService {
 	}
 	
     private List<Account> accountList = Databse.getAccountList();
-    private String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+//    private String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     
     //lodge 
     public String lodgeMoney(int accId, double amount, String description) {
     	Account account = this.getAccountById(accId);
         double newBalance = account.getBalance() + amount;
         account.setBalance(newBalance);
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         account.addNewTransaction(new Transaction(date, description, newBalance, 1, accId, 0, "LODGE"));
         String message = "Lodgement successful";
         return message;
@@ -51,6 +51,7 @@ public class TransactionService {
         	message = "You have insufficient funds to complete transaction";
         } else {
         	account.setBalance(newBalance);
+        	String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         	account.addNewTransaction(new Transaction(date, description, newBalance, 1, accId, 0, "WITHDRAW"));
         	message = "Withdrawal successful";
         }
@@ -69,12 +70,11 @@ public class TransactionService {
     		 account1.setBalance(newBalance1);
     		 double newBalance2 = account2.getBalance() + amount;
     		 account2.setBalance(newBalance2);
+    		 String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     		 account1.addNewTransaction(new Transaction(date, description, newBalance1, 1, accId1, accId2, "TRANSFER OUT"));
     		 account2.addNewTransaction(new Transaction(date, description, newBalance2, 1, accId1, accId2, "TRANSFER IN"));
     		 message = "Money transferred successfully";
     	 }
     	 return message;
      }
-     
-
 }

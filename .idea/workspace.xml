@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cf72198-a79c-4750-8440-0a58c33a9695" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Resources/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Resources/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Database/Databse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Database/Databse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Resources/UserResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Resources/UserResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Model/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Resources/TransactionResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Resources/TransactionResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Services/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/online_banking/Services/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Model/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Resources/TransactionResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Resources/TransactionResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Services/TransactionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/online_banking/Services/TransactionService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,5 +57,11 @@
       <updated>1577288840933</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="656" y="365" key="com.intellij.ide.util.TipDialog" timestamp="1577480014133">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="656" y="365" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/1920.0.1680.1050@0.0.1920.1080" timestamp="1577480014133" />
   </component>
 </project>

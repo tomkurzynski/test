@@ -40,7 +40,15 @@ public class Account {
         
     }
     
-
+    public Account(int accountID, int sortCode, int balance, int accountNum) {
+        this.accountID = accountID;
+        this.sortCode = sortCode;
+        this.balance = balance;
+        this.accountNum =  accountNum;
+        this.transactions = new ArrayList<>();
+        
+    }
+    
     public int getSortCode() {
         return sortCode;
     }

@@ -34,11 +34,11 @@ public class Databse {
         if(db){
         
        //--------------USER TRANSACTYIONS------------------------//
-       List<Transaction> trans1 = new ArrayList<>();
-       List<Transaction> trans2 = new ArrayList<>();
+//       List<Transaction> trans1 = new ArrayList<>();
+//       List<Transaction> trans2 = new ArrayList<>();
                //String date, String description, double newBalance, String debit_credit)
-        Transaction transHistory1 = new Transaction("20-12-19","food",500,"debit");
-        Transaction transHistory2 = new Transaction("21-12-19","food",200,"debit");
+//        Transaction transHistory1 = new Transaction("20-12-19","food",500,"debit");
+//        Transaction transHistory2 = new Transaction("21-12-19","food",200,"debit");
                 
 
         //--------------USER ACCOUNTS--------------------//
@@ -50,9 +50,9 @@ public class Databse {
 
         //initialise accounts for user 1 and 2
         //accountID is used to track location of users account in the arraylist1
-       Account userOneAccount1 = new Account(1,123,5000,000123, trans1);  
-       Account userTwoAccount1 = new Account(2,456,5000,001024, trans1);
-       Account userOneaccount2 = new Account(3,321,1000,000124,trans2);
+       Account userOneAccount1 = new Account(1,123,5000,000123);  
+       Account userTwoAccount1 = new Account(2,456,5000,001024);
+       Account userOneaccount2 = new Account(3,321,1000,000124);
        
        // add initialised accounts to user account arraylist
        

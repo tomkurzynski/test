@@ -15,22 +15,25 @@ public class Transaction {
     private double newBalance;
     private String debit_credit;
     private int transID;
-    //additional attributes
     private int accId1;
     private int accId2;
     private String transactionType;
+
+
     
     public Transaction() {
-    	
-    }
+		
+	}
 
-    public Transaction(String date, String description, double newBalance, String debit_credit) {
+
+	public Transaction(String date, String description, double newBalance, String debit_credit) {
         this.date = date;
         this.description = description;
         this.newBalance = newBalance;
         this.debit_credit = debit_credit;
     }
-
+    
+    
     public Transaction(String date, String description, double newBalance, int transID, int accId1, int accId2, String transactionType) {
         this.date = date;
         this.description = description;
@@ -92,10 +95,5 @@ public class Transaction {
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
-    
-    
-    
-   
-    
-    
 }
+
